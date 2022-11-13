@@ -10,6 +10,7 @@ import { Mainpage } from "./components/pages/Mainpage";
 import { useInitializeApp } from "./hooks/useInitializeApp";
 import { Create } from "./components/pages/Create";
 import { Portfolio } from "./components/pages/Portfolio";
+import { Faucet } from "./components/pages/Faucet";
 
 const App: React.FC<{}> = () => {
   const initStatus = useInitializeApp();
@@ -39,6 +40,7 @@ const App: React.FC<{}> = () => {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contracts" element={<Contracts />} />
         <Route path="/about" element={<About />} />
+        <Route path="/faucet" element={<Faucet />} />
       </Routes>
     </>
   );

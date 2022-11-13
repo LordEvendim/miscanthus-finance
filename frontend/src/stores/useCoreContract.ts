@@ -119,7 +119,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
         .send({
           feeLimit: 100_000_000,
           callValue: 0,
-          shouldPollResponse: true,
+          shouldPollResponse: false,
         });
 
       if (!result) {
@@ -149,7 +149,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const result = await core.withdrawUSD(amount).send({
         feeLimit: 100_000_000,
         callValue: 0,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       if (!result) {
@@ -179,7 +179,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const result = await core.withdraw(amount).send({
         feeLimit: 100_000_000,
         callValue: 0,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       if (!result) {
@@ -242,7 +242,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const resultDeposit = await core.depositUSD().send({
         feeLimit: 100_000_000,
         callValue: 0,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       console.log("Deposited USD");
@@ -269,7 +269,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const result = await core.deposit().send({
         feeLimit: 100_000_000,
         callValue: amount,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       if (!result) {
@@ -299,7 +299,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const result = await core.buyContract(contractId).send({
         feeLimit: 100_000_000,
         callValue: 0,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       if (!result) {
@@ -329,7 +329,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const result = await core.cancelPosition(contractId.toString()).send({
         feeLimit: 100_000_000,
         callValue: 0,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       if (!result) {
@@ -359,7 +359,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const result = await core.settleContract(contractId).send({
         feeLimit: 100_000_000,
         callValue: 0,
-        shouldPollResponse: true,
+        shouldPollResponse: false,
       });
 
       if (!result) {
