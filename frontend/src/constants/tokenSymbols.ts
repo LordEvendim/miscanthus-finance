@@ -1,4 +1,4 @@
 export const tokenSymbols = {
-  STABLE: "USD",
+  STABLE: "USDM",
   NATIVE: "TRX",
 };

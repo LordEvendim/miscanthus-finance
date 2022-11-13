@@ -60,13 +60,19 @@ export const Dashboard: React.FC<DashboardProps> = () => {
   // on initialization
   useEffect(() => {
     (async () => {
-      if (address) {
-        await useUserData.getState().fetchBalances();
-        await useEpoch.getState().fetchCurrentEpoch();
-        await useCoreContract
-          .getState()
-          .fetchContracts(useEpoch.getState().currentEpoch);
-      }
+      setIsRefreshingEpoch(true);
+      setIsRefreshing(true);
+      try {
+        if (address) {
+          await useUserData.getState().fetchBalances();
+          await useEpoch.getState().fetchCurrentEpoch();
+          await useCoreContract
+            .getState()
+            .fetchContracts(useEpoch.getState().currentEpoch);
+        }
+      } catch (error) {}
+      setIsRefreshingEpoch(false);
+      setIsRefreshing(false);
     })();
   }, [address]);
 
