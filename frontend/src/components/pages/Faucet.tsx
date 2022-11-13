@@ -34,7 +34,7 @@ export const Faucet: React.FC<FaucetProps> = () => {
       // @ts-ignore
       const result = await stable.getTokens().send({
         feeLimit: 100_000_000,
-        callValue: ethers.utils.parseUnits("100", 6),
+        callValue: ethers.utils.parseUnits("1", 6),
         shouldPollResponse: false,
       });
 
@@ -77,13 +77,13 @@ export const Faucet: React.FC<FaucetProps> = () => {
               bgGradient="linear(to-l, #68D391, #68D3CC)"
               onClick={() => handleSubmit()}
             >
-              {`Obtain 1 ${tokenSymbols.STABLE} ≈ 1000 ${tokenSymbols.NATIVE}`}
+              {`Obtain 1000 ${tokenSymbols.STABLE} ≈ 1 ${tokenSymbols.NATIVE}`}
             </Button>
           </GridItem>
           <GridItem ml={"80px"}>
             <Text fontSize={"xl"}>
               In order to let users test the application, we provide a simple
-              faucet to mint stablecoin. Each token can be obtained for ≈1000
+              faucet to mint stablecoin. 1000USDM tokens can be obtained for ≈1
               TRX.
             </Text>
           </GridItem>
