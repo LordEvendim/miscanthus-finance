@@ -128,21 +128,23 @@ contract MiscanthusCore is ERC721 {
             futuresDetailsById[contractId].settlementEpoch >= getCurrentEpoch(),
             "contract not expired"
         );
-        require(ownerOf(contractId) != address(this), "contract was not sold");
+
+        address owner = ownerOf(contractId);
+
+        require(owner != address(this), "contract was not sold");
 
         address writer = futuresDetailsById[contractId].writer;
         uint256 contractPrice = futuresDetailsById[contractId].contractPrice;
 
         // writer should recieve USD
-        payable(ownerOf(contractId)).transfer(contractPrice);
+        payable(owner).transfer(contractPrice);
 
         // buyer should recieve NATIVE
         STABLECOIN.transfer(writer, contractPrice);
 
         // update sets
-        userNFTs[msg.sender].remove(contractId);
+        userNFTs[owner].remove(contractId);
         userNFTs[writer].remove(contractId);
-        contractsByEpoch[getCurrentEpoch()].remove(contractId);
 
         _burn(contractId);
 

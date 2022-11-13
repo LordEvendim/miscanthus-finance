@@ -19,7 +19,7 @@ export const contractAddresses: {
   },
   tronTestnet: {
     STABLECOIN: "THbMnXCWHWKG473i8iCbVgqDvMx9Ew2WVU",
-    CORE: "TRSBoK2qB2jK9Wgk1WLbiUoFxdyT751gfx",
+    CORE: "TVm22VuHmhxAuxN9f1LfpmrJTWS8aAYG9R",
   },
 };
 
