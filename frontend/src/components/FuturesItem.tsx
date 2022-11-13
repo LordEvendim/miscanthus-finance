@@ -82,7 +82,7 @@ export const FuturesItem: React.FC<FuturesItemProps> = ({
             marginTop={"2px"}
           >
             {`${ethers.utils.formatUnits(contractPrice.toString(), 6)} ${
-              tokenSymbols.NATIVE
+              tokenSymbols.STABLE
             }`}
           </Box>
         </Button>
