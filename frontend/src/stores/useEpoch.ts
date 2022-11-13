@@ -22,7 +22,7 @@ export const useEpoch = create<useEpochStore>((set, get) => ({
       const contract = useContracts.getState().core;
 
       if (!contract) {
-        throw new Error("Core contract not defined");
+        throw new Error("Cannot fetch epoch. Connect your wallet");
       }
 
       // @ts-ignore

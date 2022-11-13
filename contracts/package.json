@@ -3,7 +3,7 @@
   "scripts": {
     "test": "hardhat test",
     "server": "hardhat node",
-    "build": "hardhat compile --verbose && xcopy /s /q /y \"./typechain\" \"../frontend/src/contracts/typechain\" && xcopy /s /q /y \"./artifacts\" \"../frontend/src/contracts/artifacts\" ",
+    "build:linux": "hardhat compile --verbose && (rm -Rf ../frontend/src/contracts || true) && (mkdir ../frontend/src/contracts || true) && cp -p -R typechain ../frontend/src/contracts/typechain && cp -p -R ./artifacts ../frontend/src/contracts/artifacts",
     "deploy:local": "hardhat run --network localhost scripts/deploy.ts",
     "flatten": "hardhat flatten ./contracts/MiscanthusCore.sol > ./contracts/flatten/MiscanthusCoreFlatten.sol && hardhat flatten ./contracts/Stablecoin.sol > ./contracts/flatten/StablecoinFlatten.sol && ./scripts/formatContractsTron.sh",
     "formatTron": "./scripts/formatContractsTron.sh"

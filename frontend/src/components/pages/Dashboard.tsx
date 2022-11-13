@@ -37,6 +37,7 @@ export const Dashboard: React.FC<DashboardProps> = () => {
   const nextEpochDate = Date.now() - (Date.now() % DAY) + DAY;
 
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+  const [isRefreshingEpoch, setIsRefreshingEpoch] = useState<boolean>(false);
 
   const currentEpoch = useEpoch((state) => state.currentEpoch);
   const contracts = useCoreContract((state) => state.contracts);
@@ -56,30 +57,38 @@ export const Dashboard: React.FC<DashboardProps> = () => {
   const address = useUserData((state) => state.address);
   const openModal = useGenericBalanceModal((state) => state.openModal);
 
+  // on initialization
   useEffect(() => {
-    if (useEpoch.getState().hasFetchedEpoch === true) return;
-
-    useEpoch.getState().fetchCurrentEpoch();
-  }, []);
-
-  useEffect(() => {
-    useCoreContract.getState().fetchContracts(currentEpoch);
-  }, [currentEpoch]);
-
-  useEffect(() => {
-    if (address) useUserData.getState().fetchBalances();
+    (async () => {
+      if (address) {
+        await useUserData.getState().fetchBalances();
+        await useEpoch.getState().fetchCurrentEpoch();
+        await useCoreContract
+          .getState()
+          .fetchContracts(useEpoch.getState().currentEpoch);
+      }
+    })();
   }, [address]);
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
     try {
-      await useEpoch.getState().fetchCurrentEpoch();
       await Promise.all([
-        useCoreContract.getState().fetchContracts(currentEpoch),
+        useCoreContract
+          .getState()
+          .fetchContracts(useEpoch.getState().currentEpoch),
         useUserData.getState().fetchBalances(),
       ]);
     } catch (error) {}
     setIsRefreshing(false);
+  };
+
+  const resetEpoch = async () => {
+    setIsRefreshingEpoch(true);
+    try {
+      await useEpoch.getState().fetchCurrentEpoch();
+    } catch (error) {}
+    setIsRefreshingEpoch(false);
   };
 
   return (
@@ -148,7 +157,15 @@ export const Dashboard: React.FC<DashboardProps> = () => {
                     >
                       <GrPrevious color="black" size={"14px"}></GrPrevious>
                     </Button>
-                    <Text>Epoch {currentEpoch.toString()}</Text>
+                    <Button
+                      variant={"ghost"}
+                      fontWeight={"normal"}
+                      w={"80px"}
+                      isLoading={isRefreshingEpoch}
+                      onClick={() => resetEpoch()}
+                    >
+                      Epoch {currentEpoch.toString()}
+                    </Button>
                     <Button
                       width={"50px"}
                       padding={"10px"}

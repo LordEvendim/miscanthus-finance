@@ -41,7 +41,7 @@ export const useCoreContract = create<useCoreContractStore>((set) => ({
       const core = useContracts.getState().core;
 
       if (!core) {
-        throw new Error("Core contract not defined");
+        throw new Error("Cannot fetch contracts. Please connect your wallet");
       }
 
       // @ts-ignore

@@ -48,13 +48,21 @@ export const Footer: React.FC<FooterProps> = () => {
             <Heading fontSize={"sm"}>Community</Heading>
             <Flex alignItems={"center"} opacity={"0.5"}>
               <FaDiscord />
-              <Link marginLeft={"5px"} href={""} isExternal>
+              <Link
+                marginLeft={"5px"}
+                href={"https://discord.gg/cNaCqUu7"}
+                isExternal
+              >
                 Discord
               </Link>
             </Flex>
             <Flex alignItems={"center"} opacity={"0.5"}>
               <FaTwitter />
-              <Link marginLeft={"5px"} href={""} isExternal>
+              <Link
+                marginLeft={"5px"}
+                href={"https://twitter.com/miscanthus_fi"}
+                isExternal
+              >
                 Twitter
               </Link>
             </Flex>

@@ -71,6 +71,9 @@ export const NavigationBar: React.FC<NavigationBarProps> = () => {
             <NavLink to={"/contracts"}>Contracts</NavLink>
           </Button>
           <Button variant="link" textColor="gray.600">
+            <NavLink to={"/faucet"}>Faucet</NavLink>
+          </Button>
+          <Button variant="link" textColor="gray.600">
             <NavLink to={"/trade"}>
               <Text color={isHomeScreen ? "white" : "green.300"}>Trade</Text>
             </NavLink>
